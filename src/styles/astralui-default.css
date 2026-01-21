@@ -1,0 +1,129 @@
+/* src/styles/astroui-tokens.css */
+:root {
+  /* Typography */
+  --aui-font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --aui-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+  --aui-font-size-xs: 0.75rem;
+  --aui-font-size-sm: 0.875rem;
+  --aui-font-size-base: 1rem;
+  --aui-font-size-lg: 1.125rem;
+  --aui-font-size-xl: 1.25rem;
+  --aui-font-size-2xl: 1.5rem;
+  --aui-font-size-3xl: 1.875rem;
+  --aui-font-size-4xl: 2.25rem;
+  
+  /* Colors - Base HSL values */
+  --aui-hue-primary: 222;
+  --aui-sat-primary: 47%;
+  --aui-lig-primary: 11%;
+  
+  --aui-hue-accent: 210;
+  --aui-sat-accent: 40%;
+  --aui-lig-accent: 98%;
+  
+  --aui-hue-destructive: 0;
+  --aui-sat-destructive: 84%;
+  --aui-lig-destructive: 60%;
+  
+  --aui-hue-warning: 38;
+  --aui-sat-warning: 92%;
+  --aui-lig-warning: 56%;
+  
+  --aui-hue-success: 142;
+  --aui-sat-success: 71%;
+  --aui-lig-success: 51%;
+  
+  /* Light mode colors */
+  --aui-background: hsl(0, 0%, 100%);
+  --aui-foreground: hsl(240, 10%, 3.9%);
+  --aui-card: hsl(0, 0%, 100%);
+  --aui-card-foreground: hsl(240, 10%, 3.9%);
+  --aui-popover: hsl(0, 0%, 100%);
+  --aui-popover-foreground: hsl(240, 10%, 3.9%);
+  --aui-primary: hsl(var(--aui-hue-primary) var(--aui-sat-primary) var(--aui-lig-primary));
+  --aui-primary-foreground: hsl(var(--aui-hue-accent) var(--aui-sat-accent) var(--aui-lig-accent));
+  --aui-secondary: hsl(210, 40%, 96.1%);
+  --aui-secondary-foreground: hsl(240, 10%, 3.9%);
+  --aui-muted: hsl(240, 5%, 96%);
+  --aui-muted-foreground: hsl(240, 5%, 46%);
+  --aui-accent: hsl(240, 5%, 96%);
+  --aui-accent-foreground: hsl(240, 10%, 3.9%);
+  --aui-destructive: hsl(var(--aui-hue-destructive) var(--aui-sat-destructive) var(--aui-lig-destructive));
+  --aui-destructive-foreground: hsl(0, 0%, 98%);
+  --aui-border: hsl(214, 32%, 91%);
+  --aui-input: hsl(214, 32%, 91%);
+  --aui-ring: hsl(var(--aui-hue-primary) var(--aui-sat-primary) var(--aui-lig-primary));
+  
+  /* Spacing */
+  --aui-space-1: 0.25rem;
+  --aui-space-2: 0.5rem;
+  --aui-space-3: 0.75rem;
+  --aui-space-4: 1rem;
+  --aui-space-5: 1.25rem;
+  --aui-space-6: 1.5rem;
+  --aui-space-8: 2rem;
+  --aui-space-10: 2.5rem;
+  --aui-space-12: 3rem;
+  --aui-space-16: 4rem;
+  --aui-space-20: 5rem;
+  --aui-space-24: 6rem;
+  --aui-space-28: 7rem;
+  --aui-space-32: 8rem;
+  --aui-space-36: 9rem;
+  --aui-space-40: 10rem;
+  --aui-space-44: 11rem;
+  --aui-space-48: 12rem;
+  --aui-space-52: 13rem;
+  --aui-space-56: 14rem;
+  --aui-space-60: 15rem;
+  --aui-space-64: 16rem;
+  --aui-space-72: 18rem;
+  --aui-space-80: 20rem;
+  --aui-space-96: 24rem;
+  
+  /* Border Radius */
+  --aui-radius-sm: 0.25rem;
+  --aui-radius-md: 0.375rem;
+  --aui-radius-lg: 0.5rem;
+  --aui-radius-xl: 0.75rem;
+  --aui-radius-2xl: 1rem;
+  --aui-radius-full: 9999px;
+  
+  /* Shadows */
+  --aui-shadow-xs: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+  --aui-shadow-sm: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --aui-shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
+  --aui-shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+  --aui-shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1);
+  
+  /* Transitions */
+  --aui-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --aui-transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --aui-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Focus ring */
+  --aui-focus-ring: 0 0 0 2px var(--aui-background), 0 0 0 4px var(--aui-ring);
+}
+
+/* Dark mode */
+.dark {
+  --aui-background: hsl(240, 10%, 3.9%);
+  --aui-foreground: hsl(0, 0%, 98%);
+  --aui-card: hsl(240, 10%, 3.9%);
+  --aui-card-foreground: hsl(0, 0%, 98%);
+  --aui-popover: hsl(240, 10%, 3.9%);
+  --aui-popover-foreground: hsl(0, 0%, 98%);
+  --aui-primary: hsl(var(--aui-hue-accent) var(--aui-sat-accent) var(--aui-lig-accent));
+  --aui-primary-foreground: hsl(var(--aui-hue-primary) var(--aui-sat-primary) var(--aui-lig-primary));
+  --aui-secondary: hsl(240, 4%, 16%);
+  --aui-secondary-foreground: hsl(0, 0%, 98%);
+  --aui-muted: hsl(240, 4%, 16%);
+  --aui-muted-foreground: hsl(240, 5%, 65%);
+  --aui-accent: hsl(240, 4%, 16%);
+  --aui-accent-foreground: hsl(0, 0%, 98%);
+  --aui-destructive: hsl(var(--aui-hue-destructive) var(--aui-sat-destructive) var(--aui-lig-destructive));
+  --aui-destructive-foreground: hsl(0, 0%, 98%);
+  --aui-border: hsl(240, 4%, 16%);
+  --aui-input: hsl(240, 4%, 16%);
+  --aui-ring: hsl(var(--aui-hue-accent) var(--aui-sat-accent) var(--aui-lig-accent));
+}

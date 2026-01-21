@@ -1,0 +1,236 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"button" | "a"> {
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link"
+    | "cubic"
+    | "cubic-secondary";
+  size?: "default" | "sm" | "lg" | "icon";
+  as?: "button" | "a";
+  href?: string;
+  disabled?: boolean;
+  class?: string;
+  type?: "button" | "submit" | "reset";
+}
+
+const {
+  variant = "default",
+  size: sizeProp,
+  as = "button",
+  href,
+  disabled = false,
+  class: className = "",
+  type = "button",
+  ...rest
+} = Astro.props;
+
+// For cubic variants, we don't apply a default size unless explicitly provided
+const size = sizeProp || (variant.startsWith("cubic") ? undefined : "default");
+
+const Tag = href ? "a" : as;
+const isDisabled = disabled && !href;
+---
+
+{
+  Tag === "button" ? (
+    <button
+      type={type}
+      class:list={[
+        "aui-button",
+        `aui-button--${variant}`,
+        size ? `aui-button--${size}` : "",
+        className,
+      ]}
+      disabled={isDisabled}
+      {...rest}
+    >
+      <slot />
+    </button>
+  ) : (
+    <a
+      href={href}
+      class:list={[
+        "aui-button",
+        `aui-button--${variant}`,
+        size ? `aui-button--${size}` : "",
+        className,
+      ]}
+      role="button"
+      aria-disabled={isDisabled ? "true" : undefined}
+      {...rest}
+    >
+      <slot />
+    </a>
+  )
+}
+
+<style>
+  .aui-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: var(--aui-radius-md);
+    font-size: var(--aui-font-size-sm);
+    font-weight: 500;
+    transition: all var(--aui-transition-fast);
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    gap: var(--aui-space-2);
+  }
+
+  .aui-button:focus-visible {
+    outline: none;
+    box-shadow: var(--aui-focus-ring);
+  }
+
+  .aui-button:disabled,
+  .aui-button[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* Variants */
+  .aui-button--default {
+    background-color: var(--aui-primary);
+    color: var(--aui-primary-foreground);
+    border: 1px solid transparent;
+  }
+
+  .aui-button--default:hover {
+    opacity: 0.9;
+  }
+
+  .aui-button--destructive {
+    background-color: var(--aui-destructive);
+    color: var(--aui-destructive-foreground);
+    border: 1px solid transparent;
+  }
+
+  .aui-button--destructive:hover {
+    opacity: 0.9;
+  }
+
+  .aui-button--outline {
+    background-color: transparent;
+    border-color: var(--aui-border);
+    color: var(--aui-foreground);
+  }
+
+  .aui-button--outline:hover {
+    background-color: var(--aui-accent);
+    color: var(--aui-accent-foreground);
+  }
+
+  .aui-button--secondary {
+    background-color: var(--aui-secondary);
+    color: var(--aui-secondary-foreground);
+    border: 1px solid transparent;
+  }
+
+  .aui-button--secondary:hover {
+    background-color: hsl(
+      var(--aui-hue-secondary) var(--aui-sat-secondary)
+        calc(var(--aui-lig-secondary) - 7%)
+    );
+  }
+
+  .aui-button--ghost {
+    background-color: transparent;
+    color: var(--aui-foreground);
+  }
+
+  .aui-button--ghost:hover {
+    background-color: var(--aui-accent);
+    color: var(--aui-accent-foreground);
+  }
+
+  .aui-button--link {
+    background-color: transparent;
+    color: var(--aui-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .aui-button--link:hover {
+    text-decoration: none;
+  }
+
+  /* Sizes */
+  .aui-button--default {
+    height: var(--aui-space-9);
+    padding: var(--aui-space-2) var(--aui-space-4);
+  }
+
+  .aui-button--sm {
+    height: var(--aui-space-8);
+    padding: var(--aui-space-2) var(--aui-space-3);
+    font-size: var(--aui-font-size-xs);
+  }
+
+  .aui-button--lg {
+    height: var(--aui-space-10);
+    padding: var(--aui-space-2) var(--aui-space-6);
+    font-size: var(--aui-font-size-base);
+  }
+
+  .aui-button--icon {
+    height: var(--aui-space-9);
+    width: var(--aui-space-9);
+    padding: 0;
+  }
+
+  /* Cubic Variant */
+  .aui-button.aui-button--cubic {
+    background: white !important;
+    color: #030712 !important;
+    padding: 1.1rem 2.8rem !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    box-shadow: 0 10px 30px -10px rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    height: auto !important;
+    border: none !important;
+    position: relative;
+    line-height: 1.2;
+    text-transform: none;
+  }
+
+  .aui-button.aui-button--cubic:hover {
+    transform: translateY(-5px) scale(1.03) !important;
+    box-shadow: 0 20px 40px -15px rgba(255, 255, 255, 0.4);
+    background: white !important;
+    opacity: 1 !important;
+  }
+
+  .aui-button.aui-button--cubic-secondary {
+    background: rgba(255, 255, 255, 0.03) !important;
+    color: white !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 1.1rem 2.8rem !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    height: auto !important;
+    position: relative;
+    line-height: 1.2;
+    text-transform: none;
+  }
+
+  .aui-button.aui-button--cubic-secondary:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-5px) scale(1.03) !important;
+    opacity: 1 !important;
+  }
+</style>

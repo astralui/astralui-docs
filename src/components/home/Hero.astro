@@ -1,0 +1,308 @@
+---
+import { Button } from "../astralui";
+import PlanetSlider from "./PlanetSlider.astro";
+---
+
+<section class="hero-container">
+    <div class="video-placeholder">
+        <!-- Video element would go here -->
+        <PlanetSlider />
+        <div class="video-overlay"></div>
+    </div>
+
+    <div class="content">
+        <h1 class="title">
+            <span class="astral">ASTRAL</span><span class="ui">UI</span>
+        </h1>
+
+        <p class="description">
+            A minimal, simple and beautiful UI library for Astro. Built only
+            with Astro native components and pure CSS. No frameworks, no
+            dependencies, no bloat. Just install only the components you need.
+        </p>
+
+        <div class="actions">
+            <Button
+                href="/docs/getting-started"
+                variant="cubic"
+                class="hero-btn"
+            >
+                Get Started
+            </Button>
+            <Button
+                href="https://github.com/astralui/astralui-docs"
+                variant="cubic-secondary"
+                class="hero-btn"
+            >
+                View Code
+            </Button>
+        </div>
+    </div>
+
+    <div class="cosmos-bg">
+        <div class="star-field">
+            <div class="star" style="top: 15%; left: 10%; animation-delay: 0s;">
+            </div>
+            <div class="star" style="top: 25%; left: 45%; animation-delay: 1s;">
+            </div>
+            <div class="star" style="top: 45%; left: 85%; animation-delay: 2s;">
+            </div>
+            <div
+                class="star"
+                style="top: 75%; left: 15%; animation-delay: 0.5s;"
+            >
+            </div>
+            <div
+                class="star"
+                style="top: 85%; left: 75%; animation-delay: 1.5s;"
+            >
+            </div>
+            <div
+                class="star"
+                style="top: 10%; left: 90%; animation-delay: 2.5s;"
+            >
+            </div>
+            <div
+                class="star"
+                style="top: 60%; left: 40%; animation-delay: 0.8s;"
+            >
+            </div>
+            <div
+                class="star"
+                style="top: 35%; left: 20%; animation-delay: 1.2s;"
+            >
+            </div>
+            <div
+                class="star"
+                style="top: 55%; left: 70%; animation-delay: 1.8s;"
+            >
+            </div>
+        </div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+    </div>
+</section>
+
+<style>
+    :root {
+        --color-astral: #8b5cf6;
+        --color-ui: #22d3ee;
+        --color-bg: #030712;
+        --font-main: "Inter", system-ui, -apple-system, sans-serif;
+    }
+
+    .hero-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        min-height: 750px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: var(--color-bg);
+        color: white;
+        font-family: var(--font-main);
+        text-align: center;
+    }
+
+    /* Cosmos Background */
+    .cosmos-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .nebula {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.25;
+        animation: drift 25s infinite alternate ease-in-out;
+    }
+
+    .nebula-1 {
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(
+            circle,
+            var(--color-astral) 0%,
+            transparent 80%
+        );
+        top: -200px;
+        left: -100px;
+    }
+
+    .nebula-2 {
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+            circle,
+            var(--color-ui) 0%,
+            transparent 80%
+        );
+        bottom: -150px;
+        right: -100px;
+        animation-delay: -7s;
+    }
+
+    .nebula-3 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+        top: 40%;
+        left: 40%;
+        opacity: 0.1;
+        animation-duration: 30s;
+    }
+
+    .star-field {
+        position: absolute;
+        inset: 0;
+    }
+
+    .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        width: 2px;
+        height: 2px;
+        opacity: 0.5;
+        animation: twinkle 4s infinite alternate;
+    }
+
+    @keyframes drift {
+        from {
+            transform: translate(-30px, -30px) scale(1);
+        }
+        to {
+            transform: translate(50px, 50px) scale(1.1);
+        }
+    }
+
+    @keyframes twinkle {
+        0% {
+            opacity: 0.2;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.9;
+            transform: scale(1.5);
+        }
+        100% {
+            opacity: 0.2;
+            transform: scale(1);
+        }
+    }
+
+    /* Video Placeholder - Dark Overlay */
+    .video-placeholder {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: var(--color-bg);
+    }
+
+    .video-placeholder::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            circle at center,
+            transparent 0%,
+            var(--color-bg) 95%
+        );
+        z-index: 2;
+    }
+
+    .video-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: var(--color-bg);
+        opacity: 0.6;
+    }
+
+    /* Content */
+    .content {
+        position: relative;
+        z-index: 10;
+        max-width: 1100px;
+        animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .title {
+        font-size: clamp(3rem, 16vw, 12rem);
+        font-weight: 950;
+        letter-spacing: -0.06em;
+        margin: 0;
+        line-height: 0.85;
+        text-transform: uppercase;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.02em;
+    }
+
+    .astral {
+        background: linear-gradient(135deg, #fff 40%, var(--color-astral) 90%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.4));
+    }
+
+    .ui {
+        background: linear-gradient(135deg, #fff 40%, var(--color-ui) 90%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 0 40px rgba(34, 211, 238, 0.4));
+    }
+
+    .description {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        color: #94a3b8;
+        margin-top: 2.5rem;
+
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+        font-weight: 400;
+    }
+
+    .actions {
+        margin-top: 4rem;
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .title {
+            flex-direction: column;
+            gap: 0;
+        }
+        .actions {
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .hero-btn {
+            width: 100%;
+            max-width: 320px;
+        }
+    }
+</style>
